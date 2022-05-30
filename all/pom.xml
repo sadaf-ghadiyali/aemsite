@@ -80,23 +80,13 @@
                             <type>zip</type>
                             <target>/apps/aemsite-packages/application/install</target>
                         </embedded>
-                        <embedded>
-                            <groupId>com.adobe.cq</groupId>
-                            <artifactId>core.wcm.components.content</artifactId>
-                            <type>zip</type>
-                            <target>/apps/aemsite-vendor-packages/application/install</target>
-                        </embedded>
+
                         <embedded>
                             <groupId>com.adobe.cq</groupId>
                             <artifactId>core.wcm.components.core</artifactId>
                             <target>/apps/aemsite-vendor-packages/application/install</target>
                         </embedded>
-                        <embedded>
-                            <groupId>com.adobe.cq</groupId>
-                            <artifactId>core.wcm.components.config</artifactId>
-                            <type>zip</type>
-                            <target>/apps/aemsite-vendor-packages/application/install</target>
-                        </embedded>
+
                         <embedded>
                             <groupId>com.adobe.cq</groupId>
                             <artifactId>core.wcm.components.extensions.amp.content</artifactId>
@@ -121,6 +111,13 @@
                             <target>/apps/aemsite-vendor-packages/content/install</target>
                         </embedded>
                     </embeddeds>
+                    <subPackages>
+                        <subPackage>
+                            <groupId>com.adobe.cq</groupId>
+                            <artifactId>core.wcm.components.all</artifactId>
+                            <filter>true</filter>
+                        </subPackage>
+                    </subPackages>
                 </configuration>
             </plugin>
             <plugin>
@@ -228,16 +225,7 @@
             <type>zip</type>
         </dependency>
 
-        <dependency>
-            <groupId>com.adobe.cq</groupId>
-            <artifactId>core.wcm.components.content</artifactId>
-            <type>zip</type>
-        </dependency>
-        <dependency>
-            <groupId>com.adobe.cq</groupId>
-            <artifactId>core.wcm.components.config</artifactId>
-            <type>zip</type>
-        </dependency>
+
         <dependency>
             <groupId>com.adobe.cq</groupId>
             <artifactId>core.wcm.components.extensions.amp.content</artifactId>
@@ -255,6 +243,11 @@
         <dependency>
             <groupId>com.adobe.cq</groupId>
             <artifactId>core.wcm.components.examples.ui.content</artifactId>
+            <type>zip</type>
+        </dependency>
+        <dependency>
+            <groupId>com.adobe.cq</groupId>
+            <artifactId>core.wcm.components.all</artifactId>
             <type>zip</type>
         </dependency>
     </dependencies>
