@@ -49,6 +49,7 @@
                 <artifactId>filevault-package-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
+                    <allowIndexDefinitions>true</allowIndexDefinitions>
                     <group>com.aemsite</group>
                     <packageType>container</packageType>
                     <properties>
@@ -115,6 +116,11 @@
                         <subPackage>
                             <groupId>com.adobe.cq</groupId>
                             <artifactId>core.wcm.components.all</artifactId>
+                            <filter>true</filter>
+                        </subPackage>
+                        <subPackage>
+                            <groupId>com.adobe.acs</groupId>
+                            <artifactId>acs-aem-commons-content</artifactId>
                             <filter>true</filter>
                         </subPackage>
                     </subPackages>
@@ -249,6 +255,12 @@
             <groupId>com.adobe.cq</groupId>
             <artifactId>core.wcm.components.all</artifactId>
             <type>zip</type>
+        </dependency>
+        <dependency>
+            <groupId>com.adobe.acs</groupId>
+            <artifactId>acs-aem-commons-content</artifactId>
+            <type>zip</type>
+            <classifier>min</classifier>
         </dependency>
     </dependencies>
 </project>

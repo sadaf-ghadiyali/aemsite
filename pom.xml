@@ -49,6 +49,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <componentGroupName>AEM Site</componentGroupName>
+        <com.adobe.acs.commons.version>4.7.2</com.adobe.acs.commons.version>
     </properties>
 
     <build>
@@ -554,6 +555,23 @@ Bundle-DocURL:
     <!-- ====================================================================== -->
     <dependencyManagement>
         <dependencies>
+            <!--ACS Commons Bundle for compile -->
+            <dependency>
+                <groupId>com.adobe.acs</groupId>
+                <artifactId>acs-aem-commons-bundle</artifactId>
+                <version>${com.adobe.acs.commons.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!--ACS Commons Content for bundle install -->
+            <dependency>
+                <groupId>com.adobe.acs</groupId>
+                <artifactId>acs-aem-commons-content</artifactId>
+                <version>${com.adobe.acs.commons.version}</version>
+                <type>zip</type>
+                <classifier>min</classifier>
+                <scope>provided</scope>
+            </dependency>
             <!-- OSGi Dependencies -->
             <dependency>
                 <groupId>org.osgi</groupId>
