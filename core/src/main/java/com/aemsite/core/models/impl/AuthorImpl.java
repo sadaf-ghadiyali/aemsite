@@ -13,6 +13,9 @@ import org.slf4j.LoggerFactory;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 
 @Model(adaptables = SlingHttpServletRequest.class,
@@ -46,6 +49,9 @@ public class AuthorImpl implements Author {
     @ValueMapValue
     Boolean professor;
 
+    @ValueMapValue
+    List<String> books;
+
     @RequestAttribute(name = "myAttribute")
     String myAttribute;
 
@@ -76,6 +82,16 @@ public class AuthorImpl implements Author {
     @Override
     public String getLastModifiedBy(){
         return lastModifiedBy;
+    }
+
+    @Override
+    public List<String> getBooks() {
+        if(books!=null){
+            return new ArrayList<String>(books) ;
+        }
+        else{
+            return Collections.emptyList();
+        }
     }
 
     @Override

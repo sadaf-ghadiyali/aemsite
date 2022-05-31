@@ -1,5 +1,7 @@
 package com.aemsite.core.models;
 
+import java.util.List;
+
 public interface Author {
     String getFirstName();
     String getLastName();
@@ -7,4 +9,5 @@ public interface Author {
     String getCurrentPage();
     String getHomePageName();
     String getLastModifiedBy();
+    List<String> getBooks();
 }

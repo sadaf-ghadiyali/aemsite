@@ -9,3 +9,7 @@
     <div>Page : ${author.currentPage}</div>
     <div>Home : ${author.homePageName}</div>
     <div>Last Modified By : ${author.lastModifiedBy}</div>
+    ======BOOKS======
+    <div data-sly-list.item = "${author.books}" >
+    	<p> Book: ${item}</p>
+    </div>
