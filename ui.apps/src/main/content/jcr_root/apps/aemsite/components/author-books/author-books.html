@@ -15,3 +15,10 @@
         <p>Book Subject :<b> ${item.booksubject} </b></p>
         <p>Publish Year :<b> ${item.publishyear} </b></p>
     </div>
+    ======BOOK DETAILS USING BEAN=====
+    <div data-sly-list.item = "${author.bookDetailsWithBean}">
+    ---------------Book : ${itemList.count}--------------
+    	<p>Book Name :<b> ${item.bookName} </b></p>
+        <p>Book Subject :<b> ${item.bookSubject} </b></p>
+        <p>Publish Year :<b> ${item.publishYear} </b></p>
+    </div>

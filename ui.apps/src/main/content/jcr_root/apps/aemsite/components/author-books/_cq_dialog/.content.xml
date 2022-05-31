@@ -70,6 +70,50 @@
                             </well>
                         </items>
                     </multifieldwithmap>
+                    <multifieldwithbean
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Multifield with Bean"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <well
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/well">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <bookdetailswithbean
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                        composite="{Boolean}true"
+                                        fieldLabel="Book Details">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                            name="./bookdetailswithbean">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <bookname
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    emptyText="Enter Book Name"
+                                                    fieldLabel="Book Name"
+                                                    name="./bookname"/>
+                                                <booksubject
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    emptyText="Enter Book Subject"
+                                                    fieldLabel="Book Subject"
+                                                    name="./booksubject"/>
+                                                <publishyear
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    emptyText="Enter Book Publish year"
+                                                    fieldLabel="Publish Year"
+                                                    name="./publishyear"/>
+                                            </items>
+                                        </field>
+                                    </bookdetailswithbean>
+                                </items>
+                            </well>
+                        </items>
+                    </multifieldwithbean>
                 </items>
             </tabs>
         </items>
