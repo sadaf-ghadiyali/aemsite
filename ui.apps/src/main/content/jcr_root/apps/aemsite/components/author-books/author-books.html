@@ -1,0 +1,17 @@
+
+<h1>Author Books</h1>
+<div data-sly-use.author="${'com.aemsite.core.models.AuthorBooks'}"></div>
+
+    <div>Author Name:  ${author.authorName} </div>
+    ======BOOKS======
+    <div data-sly-list.item = "${author.books}" >
+    	<p> Book: ${item}</p>
+    </div>
+    <p> All Books: ${author.books @ join=", "}</p>
+    ======BOOK DETAILS USING MAP=====
+    <div data-sly-list.item = "${author.bookDetailsWithMap}">
+    ---------------Book : ${itemList.count}--------------
+    	<p>Book Name :<b> ${item.bookname} </b></p>
+        <p>Book Subject :<b> ${item.booksubject} </b></p>
+        <p>Publish Year :<b> ${item.publishyear} </b></p>
+    </div>
