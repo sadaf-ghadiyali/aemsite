@@ -6,4 +6,5 @@ public interface Author {
     Boolean getProfessor();
     String getCurrentPage();
     String getHomePageName();
+    String getLastModifiedBy();
 }
