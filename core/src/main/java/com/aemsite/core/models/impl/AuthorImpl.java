@@ -2,6 +2,11 @@ package com.aemsite.core.models.impl;
 
 import com.aemsite.core.models.Author;
 import com.day.cq.wcm.api.Page;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.mongodb.QueryBuilder;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -17,13 +22,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
 @Model(adaptables = SlingHttpServletRequest.class,
         adapters = Author.class,
+        resourceType = AuthorImpl.RESOURCE_TYPE,
         defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Exporter(name = "jackson", extensions = "json", selector="aemsite",
+options = {
+        @ExporterOption(name= "SerializationFeature.WRAP_ROOT_VALUE" ,value="true"),
+        @ExporterOption(name= "MapperFeature.SORT_PROPERTIES_ALPHABETICALLY", value="true")
+})
+@JsonRootName("author-details")
 public class AuthorImpl implements Author {
 
     public static final Logger log = LoggerFactory.getLogger(AuthorImpl.class);
+    static final String RESOURCE_TYPE="aemsite/components/author";
 
     //to get the current page
     @ScriptVariable
@@ -60,6 +72,11 @@ public class AuthorImpl implements Author {
     @Named("jcr:lastModifiedBy") //To change the name of the property of component
     String lastModifiedBy;
 
+    @JsonProperty("authorName")
+    public String authorName(){
+        return "AEM AUthor";
+    }
+
     @Override
     public String getFirstName() {
         return fname; //name as defined in the author component
@@ -75,6 +92,7 @@ public class AuthorImpl implements Author {
         return professor;
     }
 
+    @JsonIgnore
     public String getMyAttribute() {
         return myAttribute;
     }
