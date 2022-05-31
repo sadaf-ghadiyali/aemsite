@@ -1,6 +1,7 @@
 package com.aemsite.core.models.impl;
 
 import com.aemsite.core.helpers.MultifieldHelper;
+import com.aemsite.core.helpers.NestedMultifieldHelper;
 import com.aemsite.core.models.AuthorBooks;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -84,6 +85,38 @@ public class AuthorBooksImpl implements AuthorBooks {
         }
 
         return bookDetailsList;
+    }
+
+    @ChildResource(name = "nestedbookdetails")
+    Resource nestedBookDetailsResource;
+
+    @Override
+    public List<MultifieldHelper> getBookDetailsNestedMultifield() {
+        List<MultifieldHelper> bookDetailsNested = new ArrayList<>();
+
+        try{
+            if(nestedBookDetailsResource!=null){
+                for(Resource book : nestedBookDetailsResource.getChildren()){
+                    MultifieldHelper multifieldHelper = new MultifieldHelper(book);
+                    Resource nestedResource = book.getChild("bookeditions");
+
+                    if(nestedResource!=null){
+                        List<NestedMultifieldHelper> nestedList = new ArrayList<>();
+                        for(Resource bookEdition:nestedResource.getChildren()){
+                            NestedMultifieldHelper nestedMultifieldHelper = new NestedMultifieldHelper(bookEdition);
+                            nestedList.add(nestedMultifieldHelper);
+                        }
+                        multifieldHelper.setBookEditions(nestedList);
+                    }
+
+                    bookDetailsNested.add(multifieldHelper);
+                }
+            }
+        }catch (Exception e){
+            log.info("\nERROR while getting Book Details {} ",e.getMessage());
+        }
+
+        return bookDetailsNested;
     }
 
 

@@ -2,11 +2,16 @@ package com.aemsite.core.helpers;
 
 import org.apache.sling.api.resource.Resource;
 
+import java.util.List;
+
 public class MultifieldHelper {
 
     private String bookName;
     private String bookSubject;
     private String publishYear;
+    private List<NestedMultifieldHelper> bookEditions;
+
+
 
     public MultifieldHelper(Resource resource) {
 
@@ -26,4 +31,15 @@ public class MultifieldHelper {
     public String getPublishYear() {
         return publishYear;
     }
+
+    public List<NestedMultifieldHelper> getBookEditions() {
+        return bookEditions;
+    }
+
+    public void setBookEditions(List<NestedMultifieldHelper> bookEditions) {
+        this.bookEditions = bookEditions;
+    }
+
+
+
 }

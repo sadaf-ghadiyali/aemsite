@@ -22,3 +22,16 @@
         <p>Book Subject :<b> ${item.bookSubject} </b></p>
         <p>Publish Year :<b> ${item.publishYear} </b></p>
     </div>
+    ================== USING NESTED MULTIFIELD ====================
+    <div data-sly-list="${author.bookDetailsNestedMultifield}">
+        ---------------Book : ${itemList.count}--------------
+        <p> Book : <b>${item.bookName} </b></p>
+        <p>Book Subject :<b> ${item.bookSubject} </b></p>
+        <p>Publish Year :<b> ${item.publishYear} </b></p>
+        <div data-sly-list.edition="${item.bookEditions}">
+        ------------------------
+            <p> Book Edition : <b>${edition.bookEdition} </b></p>
+            <p> Published Date : <b>${'MMM dd,yyyy' @ format=edition.editionDate}</b> </p>
+        </div>
+    </div>
+
