@@ -1,8 +1,16 @@
 <h1>Service Demo</h1>
 <div data-sly-use.servicedemo = "com.aemsite.core.models.ServiceDemo">
+==================== USING Service and Iterator =============
     <div data-sly-list.item = "${servicedemo.pagesList}">
-    ==================== USING Service and Iterator =============
         <p> Page ${itemList.count} Title : <b>${item.title} </b></p>
     </div>
+    ==================== USING Service and List ==================
+	<div data-sly-list.item="${servicedemo.pageTitles}">
+    	<p> Page ${itemList.count} Title : <b>${item} </b></p>
+	</div>
+
+    <p>Service Name: <b>${servicedemo.serviceName}</b></p>
+    <p>Service Name from Reference : <b>${servicedemo.serviceNameFromReference}</b></p>
+
 </div>
 

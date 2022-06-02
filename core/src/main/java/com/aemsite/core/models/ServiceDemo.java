@@ -10,4 +10,7 @@ public interface ServiceDemo {
     Iterator<Page> getPagesList() throws LoginException;
     List<String> getPageTitles() ;
 
+    String getServiceName();
+
+    String getServiceNameFromReference();
 }

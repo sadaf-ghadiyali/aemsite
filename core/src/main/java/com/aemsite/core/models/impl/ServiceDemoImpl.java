@@ -28,7 +28,13 @@ public class ServiceDemoImpl implements ServiceDemo {
 
     @OSGiService
     DemoServiceB demoServiceB;
-    
+
+    @OSGiService(
+            //filter = "(component.name=com.aemsite.core.services.impl.MultiServiceAImpl)"//incase you want to call service with lower service ranking
+            filter = "(component.name=ServiceA)"
+    )
+    MultiService multiService;
+
     @Override
     public Iterator<Page> getPagesList() {
         return demoService.getPages();
@@ -37,6 +43,16 @@ public class ServiceDemoImpl implements ServiceDemo {
     @Override
     public List<String> getPageTitles() {
         return demoServiceB.getPageTitleList();
+    }
+
+    @Override
+    public String getServiceName() {
+        return multiService.getName();
+    }
+
+    @Override
+    public String getServiceNameFromReference(){
+        return demoServiceB.getNameFromReference();
     }
 
 }
