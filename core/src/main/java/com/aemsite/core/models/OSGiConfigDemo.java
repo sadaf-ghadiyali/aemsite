@@ -1,5 +1,9 @@
 package com.aemsite.core.models;
 
+import com.aemsite.core.services.AEMSiteFactoryOSGiConfigDemo;
+
+import java.util.List;
+
 public interface OSGiConfigDemo {
 
     String getServiceName();
@@ -12,4 +16,7 @@ public interface OSGiConfigDemo {
     int getServiceID();
     String getServiceNameModular();
     String getServiceURL();
+
+    //Factory Config
+    List<AEMSiteFactoryOSGiConfigDemo> getAllOSGiConfig();
 }

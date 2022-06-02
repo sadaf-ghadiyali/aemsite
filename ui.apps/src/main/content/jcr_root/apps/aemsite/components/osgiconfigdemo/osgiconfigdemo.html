@@ -17,4 +17,14 @@
     <div><p> Service Name: <b>${osgiConfig.serviceNameModular} </b></p></div>
     <div><p> Service URL: <b>${osgiConfig.serviceURL} </b></p></div>
 
+    ============Factory Config==============
+    <div>
+        <ul data-sly-list.item = "${osgiConfig.allOSGiConfig}">
+        	<li><p>Service ID: <b>${item.serviceID}</b></p></li>
+            <li><p>Service Name: <b>${item.serviceName}</b></p></li>
+            <li><p>Service URL: <b>${item.serviceURL}</b></p></li>
+            --------------------------
+        </ul>
+    </div>
+
 </div>

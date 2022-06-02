@@ -1,12 +1,15 @@
 package com.aemsite.core.models.impl;
 
 import com.aemsite.core.models.OSGiConfigDemo;
+import com.aemsite.core.services.AEMSiteFactoryOSGiConfigDemo;
 import com.aemsite.core.services.OSGiConfig;
 import com.aemsite.core.services.OSGiConfigModule;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+
+import java.util.List;
 
 @Model(adaptables = SlingHttpServletRequest.class,
         adapters = OSGiConfigDemo.class,
@@ -18,6 +21,9 @@ public class OSGiConfigDemoImpl implements OSGiConfigDemo {
 
     @OSGiService
     OSGiConfigModule osGiConfigModule;
+
+    @OSGiService
+    AEMSiteFactoryOSGiConfigDemo aemSiteFactoryOSGiConfigDemo;
 
 
     @Override
@@ -58,5 +64,10 @@ public class OSGiConfigDemoImpl implements OSGiConfigDemo {
     @Override
     public String getServiceURL() {
         return osGiConfigModule.getServiceURL();
+    }
+
+    @Override
+    public List<AEMSiteFactoryOSGiConfigDemo> getAllOSGiConfig() {
+        return aemSiteFactoryOSGiConfigDemo.getAllConfig();
     }
 }
