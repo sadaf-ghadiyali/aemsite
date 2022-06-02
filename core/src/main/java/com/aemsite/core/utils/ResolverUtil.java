@@ -4,6 +4,7 @@ import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +17,7 @@ public class ResolverUtil {
         final Map<String,Object> paramMap= new HashMap<>();
         paramMap.put(ResourceResolverFactory.SUBSERVICE,AEMSITE_SERVICE_USER);
         //fetches the admin service resolver using service user
-        ResourceResolver resourceResolver=resourceResolverFactory.getResourceResolver(paramMap);
+        ResourceResolver resourceResolver=resourceResolverFactory.getServiceResourceResolver(paramMap);
         return resourceResolver;
     }
 }

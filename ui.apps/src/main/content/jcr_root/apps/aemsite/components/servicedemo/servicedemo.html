@@ -1,0 +1,8 @@
+<h1>Service Demo</h1>
+<div data-sly-use.servicedemo = "com.aemsite.core.models.ServiceDemo">
+    <div data-sly-list.item = "${servicedemo.pagesList}">
+    ==================== USING Service and Iterator =============
+        <p> Page ${itemList.count} Title : <b>${item.title} </b></p>
+    </div>
+</div>
+
