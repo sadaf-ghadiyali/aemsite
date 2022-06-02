@@ -1,4 +1,5 @@
 
+
 <h1>OSGi Config Demo</h1>
 <div data-sly-use.osgiConfig="com.aemsite.core.models.OSGiConfigDemo">
 	<div><p> Service Name: <b>${osgiConfig.serviceName} </b></p></div>
@@ -11,5 +12,9 @@
             <li><p>${item}</p></li>
         </ul>
     </div>
+    ==========Creating OSGi Config in a separate file============
+    <div><p> Service ID: <b>${osgiConfig.serviceID} </b></p></div>
+    <div><p> Service Name: <b>${osgiConfig.serviceNameModular} </b></p></div>
+    <div><p> Service URL: <b>${osgiConfig.serviceURL} </b></p></div>
 
 </div>
