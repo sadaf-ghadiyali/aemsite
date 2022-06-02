@@ -1,5 +1,7 @@
 package com.aemsite.core.models.impl;
 
+import com.aemsite.core.services.DemoServiceB;
+import com.aemsite.core.services.MultiService;
 import com.day.cq.wcm.api.Page;
 import com.aemsite.core.models.ServiceDemo;
 import com.aemsite.core.services.DemoService;
@@ -12,6 +14,7 @@ import org.slf4j.LoggerFactory;
 
 
 import java.util.Iterator;
+import java.util.List;
 
 @Model(adaptables = SlingHttpServletRequest.class,
         adapters = ServiceDemo.class,
@@ -23,10 +26,17 @@ public class ServiceDemoImpl implements ServiceDemo {
     @OSGiService
     DemoService demoService;
 
+    @OSGiService
+    DemoServiceB demoServiceB;
+    
     @Override
     public Iterator<Page> getPagesList() {
         return demoService.getPages();
     }
 
+    @Override
+    public List<String> getPageTitles() {
+        return demoServiceB.getPageTitleList();
+    }
 
 }

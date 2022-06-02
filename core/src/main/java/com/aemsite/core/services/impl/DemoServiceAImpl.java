@@ -12,8 +12,8 @@ import org.osgi.service.component.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
 @Component(service = DemoService.class, immediate = true)
 public class DemoServiceAImpl implements DemoService{
