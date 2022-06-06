@@ -26,7 +26,7 @@ public class AEMSiteFactoryOSGiConfigDemoImpl implements AEMSiteFactoryOSGiConfi
     }
 
     @Reference(cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC)
-    public void bindAEMSiteFactoryOSGiConfigDemo(final AEMSiteFactoryOSGiConfigDemo config){
+    public void bindOSGiFactory(final AEMSiteFactoryOSGiConfigDemo config){
         if(configList == null){
             configList = new ArrayList<>();
         }
@@ -40,7 +40,7 @@ public class AEMSiteFactoryOSGiConfigDemoImpl implements AEMSiteFactoryOSGiConfi
     // type=aemsite/components/osgiconfigmoduledemo, superType=null,
     // path=/content/aemsite/us/en/jcr:content/root/container/container/osgiconfigmoduledemo
 
-    public void unbindAEMSiteFactoryOSGiConfigDemo(final AEMSiteFactoryOSGiConfigDemo config){
+    public void unbindOSGiFactory(final AEMSiteFactoryOSGiConfigDemo config){
         configList.remove(config);
     }
 

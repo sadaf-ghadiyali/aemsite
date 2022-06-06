@@ -1,0 +1,30 @@
+
+
+<h1>OSGi Config Demo</h1>
+<div data-sly-use.osgiConfig="com.aemsite.core.models.OSGiConfigDemo">
+	<div><p> Service Name: <b>${osgiConfig.serviceName} </b></p></div>
+    <div><p> Service Count: <b>${osgiConfig.serviceCount} </b></p></div>
+    <div><p> Live Data: <b>${osgiConfig.liveData} </b></p></div>
+
+    <div><p> Run Mode: <b>${osgiConfig.runMode} </b></p></div>
+    <div>Countries:
+        <ul data-sly-list.item = "${osgiConfig.countries}">
+            <li><p>${item}</p></li>
+        </ul>
+    </div>
+    ==========Creating OSGi Config in a separate file============
+    <div><p> Service ID: <b>${osgiConfig.serviceID} </b></p></div>
+    <div><p> Service Name: <b>${osgiConfig.serviceNameModular} </b></p></div>
+    <div><p> Service URL: <b>${osgiConfig.serviceURL} </b></p></div>
+
+    ============Factory Config==============
+    <div>
+        <ul data-sly-list.item = "${osgiConfig.allOSGiConfig}">
+        	<li><p>Service ID: <b>${item.serviceID}</b></p></li>
+            <li><p>Service Name: <b>${item.serviceName}</b></p></li>
+            <li><p>Service URL: <b>${item.serviceURL}</b></p></li>
+            --------------------------
+        </ul>
+    </div>
+
+</div>
