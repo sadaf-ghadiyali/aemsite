@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
-    jcr:description="aem template for home page"
-    jcr:primaryType="cq:Template"
-    jcr:title="aem site home page"
-    allowedPaths="[/content(/.*)?]"
-    ranking="{Long}10">
+    jcr:primaryType="cq:Page">
     <jcr:content
-        cq:template="/conf/aemsite/settings/wcm/templates/page-content"
+        cq:lastModified="{Date}2022-06-06T21:08:16.822+05:30"
+        cq:lastModifiedBy="admin"
+        cq:template="/apps/aemsite/aemsite-content-template"
         jcr:primaryType="cq:PageContent"
+        jcr:title="content Page from template"
         sling:resourceType="aemsite/components/page"/>
 </jcr:root>
