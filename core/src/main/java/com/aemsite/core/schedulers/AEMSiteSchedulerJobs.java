@@ -1,38 +1,51 @@
 package com.aemsite.core.schedulers;
 
-import com.aemsite.core.configs.SchedulerConfig;
+import com.aemsite.core.configs.SchedulerJobFactoryConfig;
 import org.apache.sling.commons.scheduler.Job;
 import org.apache.sling.commons.scheduler.JobContext;
 import org.apache.sling.commons.scheduler.ScheduleOptions;
 import org.apache.sling.commons.scheduler.Scheduler;
-import org.osgi.service.component.annotations.Activate;
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Deactivate;
-import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.*;
 import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
 
 @Component(service = Job.class, immediate = true)
-@Designate(ocd = SchedulerConfig.class)
+@Designate(ocd = SchedulerJobFactoryConfig.class, factory = true)
 public class AEMSiteSchedulerJobs implements Job {
 
     static final Logger LOG = LoggerFactory.getLogger(AEMSiteSchedulerJobs.class);
 
     private int schedulerJobId;
 
+    private List<SchedulerJobFactoryConfig> schedulerConfigList;
+
     @Reference
     Scheduler scheduler;
 
+    @Reference(cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC)
+    public void bindSchedulerConfig(SchedulerJobFactoryConfig schedulerJobFactoryConfig){
+        if(schedulerConfigList == null){
+            schedulerConfigList = new ArrayList<>();
+        }
+        schedulerConfigList.add(schedulerJobFactoryConfig);
+    }
+
+    public void unbindSchedulerConfig(SchedulerJobFactoryConfig schedulerJobFactoryConfig){
+        schedulerConfigList.remove(schedulerJobFactoryConfig);
+    }
+
     @Activate
-    public void activate(SchedulerConfig schedulerConfig){
-        schedulerJobId = schedulerConfig.schedulerName().hashCode();
+    public void activate(SchedulerJobFactoryConfig schedulerConfig){
+        schedulerJobId = schedulerConfig.country().hashCode();
         addSchedulerJob(schedulerConfig);
     }
 
@@ -45,27 +58,13 @@ public class AEMSiteSchedulerJobs implements Job {
         scheduler.unschedule(String.valueOf(schedulerJobId));
     }
 
-    private void addSchedulerJob(SchedulerConfig schedulerConfig) {
-        ScheduleOptions in = scheduler.EXPR("0 12 19 1/1 * ? *");
-        Map<String, Serializable> inMap = new HashMap<>();
-        inMap.put("country","IN");
-        inMap.put("url","www.in.com");
-        in.config(inMap);
-        scheduler.schedule(this,in);
-
-        ScheduleOptions de = scheduler.EXPR("0 13 19 1/1 * ? *");
-        Map<String, Serializable> deMap = new HashMap<>();
-        deMap.put("country","DE");
-        deMap.put("url","www.de.com");
-        de.config(deMap);
-        scheduler.schedule(this,de);
-
-        ScheduleOptions us = scheduler.EXPR("0 14 19 1/1 * ? *");
-        Map<String, Serializable> usMap = new HashMap<>();
-        usMap.put("country","US");
-        usMap.put("url","www.us.com");
-        us.config(usMap);
-        scheduler.schedule(this,us);
+    private void addSchedulerJob(SchedulerJobFactoryConfig schedulerConfig) {
+        ScheduleOptions scheduleOptions = scheduler.EXPR(schedulerConfig.cronExpression());
+        Map<String, Serializable> scheduleMap = new HashMap<>();
+        scheduleMap.put("country",schedulerConfig.country());
+        scheduleMap.put("url",schedulerConfig.url());
+        scheduleOptions.config(scheduleMap);
+        scheduler.schedule(this,scheduleOptions);
 
     }
 
